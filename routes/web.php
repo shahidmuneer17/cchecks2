@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
+Route::get('/newUser', function () {
+    return view('admin.newuser');
+})->name('admin.newuser');
+
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

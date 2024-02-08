@@ -60,6 +60,10 @@
   <!-- ===============================================-->
   <!--    Main Content-->
   <!-- ===============================================-->
+  @php
+  $user = Auth::user();
+  $permit = $user->permissionsUser();
+  @endphp
   <main class="main" id="top">
     <div class="container" data-layout="container">
       <script>
@@ -82,7 +86,7 @@
 
             <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
 
-          </div><a class="navbar-brand" href="index.html">
+          </div><a class="navbar-brand" href="#">
             <div class="d-flex align-items-center py-3"><img class="me-2" src="assets/img/icons/spot-illustrations/cch1.png" alt="" width="40" /><span class="font-sans-serif text-primary">cChecks</span>
             </div>
           </a>
@@ -106,22 +110,30 @@
                     <hr class="mb-0 navbar-vertical-divider" />
                   </div>
                 </div>
-                <!-- parent pages--><a class="nav-link" href="checks-h.html" role="button">
+                @if($permit->cashchacks == 1)
+                <!-- parent pages--><a class="nav-link" href="#" role="button">
                   <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-money-check-alt"></span></span><span class="nav-link-text ps-1">Checks</span>
                   </div>
                 </a>
+                @endif
+                @if($permit->envios == 1)
                 <!-- parent pages--><a class="nav-link" href="#" role="button">
                   <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-poll-h"></span></span><span class="nav-link-text ps-1">Transactions</span>
                   </div>
                 </a>
+                @endif
+                @if($permit->follow-up == 1)
                 <!-- parent pages--><a class="nav-link" href="#" role="button">
                   <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-bell"></span></span><span class="nav-link-text ps-1">Follow ups</span>
                   </div>
                 </a>
+                @endif
+                @if($permit->end-of-day == 1)
                 <!-- parent pages--><a class="nav-link" href="endday.html" role="button">
                   <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-cash-register"></span></span><span class="nav-link-text ps-1">End of Day</span>
                   </div>
                 </a>
+                @endif
               </li>
               <li class="nav-item">
                 <!-- label-->
@@ -132,14 +144,18 @@
                     <hr class="mb-0 navbar-vertical-divider" />
                   </div>
                 </div>
+                @if($permit->tsCustomers_newcustomer == 1)
                 <!-- parent pages--><a class="nav-link" href="customers.html" role="button">
                   <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-users"></span></span><span class="nav-link-text ps-1">Customers</span>
                   </div>
                 </a>
+                @endif
+                @if($permit->tsPayers_newpayer == 1)
                 <!-- parent pages--><a class="nav-link" href="payers.html" role="button">
                   <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-building"></span></span><span class="nav-link-text ps-1">Payers</span>
                   </div>
                 </a>
+                @endif
               </li>
               <li class="nav-item">
                 <!-- label-->
@@ -150,10 +166,13 @@
                     <hr class="mb-0 navbar-vertical-divider" />
                   </div>
                 </div>
+                @if($permit->permissions == 1 || $permit->newUser == 1)
                 <!-- parent pages--><a class="nav-link dropdown-indicator" href="#user" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="user">
                   <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-user-tag"></span></span><span class="nav-link-text ps-1">User</span>
                   </div>
                 </a>
+                @endif
+                @if($permit->newUser == 1)
                 <ul class="nav collapse" id="user">
                   <li class="nav-item"><a class="nav-link" href="{{ route('admin.newUser') }}">
                       <div class="d-flex align-items-center"><span class="nav-link-text ps-1">New User</span>
@@ -162,14 +181,19 @@
                     <!-- more inner pages-->
                   </li>
                 </ul>
+                @endif
+                @if($permit->fees == 1)
                 <!-- parent pages--><a class="nav-link" href="fees.html" role="button">
                   <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-file-invoice-dollar"></span></span><span class="nav-link-text ps-1">Fees</span>
                   </div>
                 </a>
+                @endif
+                @if($permit->agents == 1)
                 <!-- parent pages--><a class="nav-link" href="agencys.html" role="button">
                   <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-user-tie"></span></span><span class="nav-link-text ps-1">Agents</span>
                   </div>
                 </a>
+                @endif
               </li>
               <li class="nav-item">
                 <!-- label-->

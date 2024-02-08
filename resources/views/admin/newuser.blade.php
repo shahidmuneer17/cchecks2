@@ -22,34 +22,38 @@
         <div class="card mb-3">
             <div class="card-header bg-body-tertiary py-2 d-flex flex-between-center">
                 <h6 class="mb-0">User information</h6>
-                <label class="text-300 me-2">id: 78</label>
+                <label class="text-300 me-2">id:</label>
 
             </div>
             <div class="card-body">
-                <form>
+                <form action="{{route('users.storeUser')}}" method="POST">
                     <div class="row gx-2">
                         <div class="col-sm-6 mb-1">
-                            <label class="form-label" for="user">User: <span class="text-danger">*</span></label>
-                            <input class="form-control" id="user" type="text" />
+                            <label class="form-label" for="user">User_name: <span class="text-danger">*</span></label>
+                            <input class="form-control" name="user_name" id="user_name" type="text" required />
+                        </div>
+                        <div class="col-sm-6 mb-1">
+                            <label class="form-label" for="email">Email: <span class="text-danger">*</span></label>
+                            <input class="form-control" name="email" id="email" type="text" required />
                         </div>
                         <div class="col-12 mb-1">
                             <label class="form-label" for="name">Full Name: <span class="text-danger">*</span></label>
-                            <input class="form-control" id="name" type="text" />
+                            <input class="form-control" name="full_name" id="full_name" type="text" required />
                         </div>
                         <div class="col-sm-6 mb-1">
                             <label class="form-label" for="phone-number1">Phone Number 1: <span class="text-danger">*</span></label>
-                            <input class="form-control" id="phone-number1" type="text" data-input-mask='{"mask":"(999) 999-9999"}' placeholder="(XXX) XXX-XXXX" />
+                            <input class="form-control" name="phone_number_1" id="phone-number1" type="text" data-input-mask='{"mask":"(999) 999-9999"}' placeholder="(XXX) XXX-XXXX" />
                         </div>
                         <div class="col-sm-6 mb-1">
                             <label class="form-label" for="phone-number2">Phone Number 2: (optional)</label>
-                            <input class="form-control" id="phone-number2" type="text" data-input-mask='{"mask":"(999) 999-9999"}' placeholder="(XXX) XXX-XXXX" />
+                            <input class="form-control" name="phone_number_2" id="phone-number2" type="text" data-input-mask='{"mask":"(999) 999-9999"}' placeholder="(XXX) XXX-XXXX" />
                         </div>
                         <div class="col-sm-3 mb-3">
                             <label class="form-label" for="acct-number">Account Number: </label>
-                            <input class="form-control" id="acct-number" type="text" />
+                            <input class="form-control" name="account_number" id="acct-number" type="text" />
                         </div>
                     </div>
-                </form>
+
             </div>
         </div>
         <div class="card mb-3">
@@ -78,7 +82,7 @@
                             <label class="form-label" for="bootstrap-wizard-wizard-confirm-password"> </label>
                         </div>
                         <div class="col-9 col-sm-7 mb-2">
-                            <input class="form-check-input" type="checkbox" checked="checked" id="akschangepwd" name="view-settings" />
+                            <input class="form-check-input" type="checkbox" checked="checked" id="akschangepwd" name="ask_change" />
                             <label class="form-check-label mb-0" for="akschangepwd">Ask user to change their password when they sign in</label>
                         </div>
                     </form>
@@ -94,15 +98,15 @@
                 <div class="row gx-2">
                     <div class="col-12 mb-1">
                         <label class="form-label" for="address">Address: <span class="text-danger">*</span></label>
-                        <input class="form-control" id="address" type="text" />
+                        <input class="form-control" name="address" id="address" type="text" />
                     </div>
                     <div class="col-12 mb-1">
                         <label class="form-label" for="address">Address 2: </label>
-                        <input class="form-control" id="address" type="text" />
+                        <input class="form-control" name="address_2" id="address" type="text" />
                     </div>
                     <div class="col-sm-6 mb-1">
                         <label class="form-label" for="city">City: <span class="text-danger">*</span></label>
-                        <input class="form-control" id="city" type="text" />
+                        <input class="form-control" name="city" id="city" type="text" />
                     </div>
                     <div class="col-sm-6 mb-1">
                         <label class="form-label" for="state">State: <span class="text-danger">*</span></label>
@@ -167,7 +171,7 @@
                     </div>
                     <div class="col-sm-3 mb-1">
                         <label class="form-label" for="zip-code">ZIP Code: <span class="text-danger">*</span></label>
-                        <input class="form-control" id="zip-code" type="text" />
+                        <input class="form-control" id="zip-code" name="zip_code" type="text" />
                     </div>
                 </div>
             </div>
@@ -179,7 +183,7 @@
             <div class="card-body">
                 <form class="dropzone dropzone-multiple p-0" id="dropzoneMultipleFileUpload" data-dropzone="data-dropzone" action="#!" data-options='{"acceptedFiles":"image/*"}'>
                     <div class="fallback">
-                        <input name="file" type="file" multiple="multiple" />
+                        <input name="file" type="file" multiple="multiple" disabled />
                     </div>
                     <div class="dz-message" data-dz-message="data-dz-message"> <img class="me-2" src="../assets/img/icons/cloud-upload.svg" width="25" alt="" /><span class="d-none d-lg-inline">Drag id image here<br />or, </span><span class="btn btn-link p-0 fs-10">Browse</span></div>
                     <div class="dz-preview dz-preview-multiple m-0 d-flex flex-column">
@@ -210,7 +214,7 @@
                 <div class="row gx-2">
                     <div class="col-12 mb-3">
                         <div class="form-floating">
-                            <textarea class="form-control" id="user-notes" placeholder="User notes here" style="height: 100px"></textarea>
+                            <textarea class="form-control" id="user-notes" name="notes" placeholder="User notes here" style="height: 100px"></textarea>
                             <label for="user-notes">Notes</label>
                         </div>
                     </div>
@@ -228,15 +232,14 @@
                     <div class="row gx-2">
                         <div class="col-12 mb-1">
                             <label class="form-label" for="user-status">Select status:</label>
-                            <select class="form-select" id="user-status" name="user-status">
+                            <select class="form-select" id="user-status" name="status">
                                 <option value="userStatus">Active</option>
                                 <option>Inactive</option>
                             </select>
                         </div>
                         <div class="col-12 mb-1">
                             <label class="form-label" for="inactive-note">Inactive Note:</label>
-                            <input class="form-control js-choice" id="inactive-note" type="text" name="inactive-note" required="required" size="1" data-options='{"removeItemButton":true,"placeholder":false}' />
-
+                            <input class="form-control js-choice" id="inactive-note" type="text" name="in_active_note" required="required" size="1" data-options='{"removeItemButton":true,"placeholder":false}' />
                         </div>
                     </div>
                 </div>
@@ -277,7 +280,7 @@
                                             <ul class="collapse treeview-list" id="tstsChecks-1-1" data-show="true">
                                                 <li class="treeview-list-item">
                                                     <div class="treeview-item">
-                                                        <input class="form-check-input" id="tstsChecks-1-1-cashchacks" type="checkbox" />
+                                                        <input class="form-check-input" id="tstsChecks-1-1-cashchacks" name="cashchacks" type="checkbox" />
                                                         <a class="flex-1" href="#!">
                                                             <p class="treeview-text">
                                                                 Cash Checks
@@ -287,7 +290,7 @@
                                                 </li>
                                                 <li class="treeview-list-item">
                                                     <div class="treeview-item">
-                                                        <input class="form-check-input" id="tstsChecks-1-1-changestatus" type="checkbox" />
+                                                        <input class="form-check-input" id="tstsChecks-1-1-changestatus" name="changestatus" type="checkbox" />
                                                         <a class="flex-1" href="#!">
                                                             <p class="treeview-text">
                                                                 Change Status
@@ -312,7 +315,7 @@
                                             <ul class="collapse treeview-list" id="tstransactions-1-1" data-show="false">
                                                 <li class="treeview-list-item">
                                                     <div class="treeview-item">
-                                                        <input class="form-check-input" id="tstransactions-1-1-envios" type="checkbox" />
+                                                        <input class="form-check-input" id="tstransactions-1-1-envios" name="envios" type="checkbox" />
                                                         <a class="flex-1" href="#!">
                                                             <p class="treeview-text">
                                                                 Envios
@@ -322,7 +325,7 @@
                                                 </li>
                                                 <li class="treeview-list-item">
                                                     <div class="treeview-item">
-                                                        <input class="form-check-input" id="tstransactions-1-1-cancelenvios" type="checkbox" />
+                                                        <input class="form-check-input" id="tstransactions-1-1-cancelenvios" name="cancelenvios" type="checkbox" />
                                                         <a class="flex-1" href="#!">
                                                             <p class="treeview-text">
                                                                 Cancel Envios
@@ -332,7 +335,7 @@
                                                 </li>
                                                 <li class="treeview-list-item">
                                                     <div class="treeview-item">
-                                                        <input class="form-check-input" id="tstransactions-1-1-paybouncedcheck" type="checkbox" />
+                                                        <input class="form-check-input" id="tstransactions-1-1-paybouncedcheck" name="paybouncedcheck" type="checkbox" />
                                                         <a class="flex-1" href="#!">
                                                             <p class="treeview-text">
                                                                 Pay Bounced Check
@@ -342,7 +345,7 @@
                                                 </li>
                                                 <li class="treeview-list-item">
                                                     <div class="treeview-item">
-                                                        <input class="form-check-input" id="tstransactions-1-1-intertransaction" type="checkbox" />
+                                                        <input class="form-check-input" id="tstransactions-1-1-intertransaction" name="intertransaction" type="checkbox" />
                                                         <a class="flex-1" href="#!">
                                                             <p class="treeview-text">
                                                                 Inter Transaction
@@ -355,7 +358,7 @@
 
                                         <li class="treeview-list-item">
                                             <div class="treeview-item">
-                                                <input class="form-check-input" id="ts-follow-up" type="checkbox" />
+                                                <input class="form-check-input" id="ts-follow-up" type="checkbox" name="follow-up" />
                                                 <a class="flex-1" href="#!">
                                                     <p class="treeview-text">
                                                         <span class="me-2 fa fa-bell"></span>
@@ -366,7 +369,7 @@
                                         </li>
                                         <li class="treeview-list-item">
                                             <div class="treeview-item">
-                                                <input class="form-check-input" id="ts-end-of-day" type="checkbox" />
+                                                <input class="form-check-input" id="ts-end-of-day" type="checkbox" name="end-of-day" />
                                                 <a class="flex-1" href="#!">
                                                     <p class="treeview-text">
                                                         <span class="me-2 fa fa-cash-register"></span>
@@ -379,7 +382,6 @@
                                         <li class="treeview-list-item">
                                             <div class="toggle-container">
                                                 <input class="form-check-input" type="checkbox" data-target="#tsCustomers-1-1" />
-
                                                 <a data-bs-toggle="collapse" href="#tsCustomers-1-1" role="button" aria-expanded="false">
                                                     <p class="treeview-text">
                                                         <span class="me-2 fas fa-users"></span>
@@ -390,7 +392,7 @@
                                             <ul class="collapse treeview-list" id="tsCustomers-1-1" data-show="false">
                                                 <li class="treeview-list-item">
                                                     <div class="treeview-item">
-                                                        <input class="form-check-input" id="tsCustomers-1-1-changestatus" type="checkbox" />
+                                                        <input class="form-check-input" id="tsCustomers-1-1-changestatus" name="tsCustomers-changestatus" type="checkbox" />
                                                         <a class="flex-1" href="#!">
                                                             <p class="treeview-text">
                                                                 Change Status
@@ -400,7 +402,7 @@
                                                 </li>
                                                 <li class="treeview-list-item">
                                                     <div class="treeview-item">
-                                                        <input class="form-check-input" id="tsCustomers-1-1-newcustomer" type="checkbox" />
+                                                        <input class="form-check-input" id="tsCustomers-1-1-newcustomer" name="tsCustomers-newcustomer" type="checkbox" />
                                                         <a class="flex-1" href="#!">
                                                             <p class="treeview-text">
 
@@ -426,7 +428,7 @@
                                             <ul class="collapse treeview-list" id="tsPayers-1-1" data-show="false">
                                                 <li class="treeview-list-item">
                                                     <div class="treeview-item">
-                                                        <input class="form-check-input" id="tsPayers-1-1-activatepayer" type="checkbox" />
+                                                        <input class="form-check-input" id="tsPayers-1-1-activatepayer" name="tsPayers-activatepayer" type="checkbox" />
                                                         <a class="flex-1" href="#!">
                                                             <p class="treeview-text">
                                                                 Activate Payers
@@ -436,7 +438,7 @@
                                                 </li>
                                                 <li class="treeview-list-item">
                                                     <div class="treeview-item">
-                                                        <input class="form-check-input" id="tsPayers-1-1-changestatus" type="checkbox" />
+                                                        <input class="form-check-input" id="tsPayers-1-1-changestatus" name="tsPayers-changestatus" type="checkbox" />
                                                         <a class="flex-1" href="#!">
                                                             <p class="treeview-text">
                                                                 Change Status
@@ -446,10 +448,9 @@
                                                 </li>
                                                 <li class="treeview-list-item">
                                                     <div class="treeview-item">
-                                                        <input class="form-check-input" id="tsPayers-1-1-newpayer" type="checkbox" />
+                                                        <input class="form-check-input" id="tsPayers-1-1-newpayer" name="tsPayers-newpayer" type="checkbox" />
                                                         <a class="flex-1" href="#!">
                                                             <p class="treeview-text">
-
                                                                 New Peyer
                                                             </p>
                                                         </a>
@@ -459,10 +460,8 @@
                                         </li>
 
                                         <li class="treeview-list-item">
-
                                             <div class="toggle-container">
                                                 <input class="form-check-input" type="checkbox" data-target="#tsUsers-1-1" />
-
                                                 <a data-bs-toggle="collapse" href="#tsUsers-1-1" role="button" aria-expanded="false">
                                                     <p class="treeview-text">
                                                         <span class="me-2 fas fa-user-tag"></span>
@@ -473,12 +472,9 @@
                                             <ul class="collapse treeview-list" id="tsUsers-1-1" data-show="false">
                                                 <li class="treeview-list-item">
                                                     <div class="treeview-item">
-
-                                                        <input class="form-check-input" id="tsUsers-1-1-permissions" type="checkbox" />
-
+                                                        <input class="form-check-input" id="tsUsers-1-1-permissions" name="permissions" type="checkbox" />
                                                         <a class="flex-1" href="#!">
                                                             <p class="treeview-text">
-
                                                                 Permissions
                                                             </p>
                                                         </a>
@@ -486,10 +482,9 @@
                                                 </li>
                                                 <li class="treeview-list-item">
                                                     <div class="treeview-item">
-                                                        <input class="form-check-input" id="tsUsers-1-1-newUser" type="checkbox" />
+                                                        <input class="form-check-input" id="tsUsers-1-1-newUser" name="newUser" type="checkbox" />
                                                         <a class="flex-1" href="#!">
                                                             <p class="treeview-text">
-
                                                                 New User
                                                             </p>
                                                         </a>
@@ -499,10 +494,7 @@
                                         </li>
                                         <li class="treeview-list-item">
                                             <div class="treeview-item">
-
-
-                                                <input class="form-check-input" type="checkbox" />
-
+                                                <input class="form-check-input" type="checkbox" name="fees" />
                                                 <a class="flex-1" href="#!">
                                                     <p class="treeview-text">
                                                         <span class="me-2 fa fa-file-invoice-dollar"></span>
@@ -513,7 +505,7 @@
                                         </li>
                                         <li class="treeview-list-item">
                                             <div class="treeview-item">
-                                                <input class="form-check-input" type="checkbox" />
+                                                <input class="form-check-input" type="checkbox" name="agents" />
                                                 <a class="flex-1" href="#!">
                                                     <p class="treeview-text">
                                                         <span class="me-2 fa fa-user-tie"></span>
@@ -842,9 +834,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-auto">
+                        <!-- <div class="col-auto">
                             <button class="btn btn-primary btn-sm" role="button">Save Permissions</button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -859,11 +851,12 @@
             </div>
             <div class="col-auto">
                 <button class="btn btn-link text-secondary p-0 me-3 fw-medium" role="button">Discard</button>
-                <button class="btn btn-primary" role="button">Save User </button>
+                <button type="submit" class="btn btn-primary" role="button">Save User </button>
             </div>
         </div>
     </div>
 </div>
+</form>
 
 
 

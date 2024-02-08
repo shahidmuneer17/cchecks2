@@ -35,7 +35,6 @@ class User extends Authenticatable
         'notes',
         'status',
         'in_active_note',
-        'permissions',
     ];
 
     /**
@@ -57,4 +56,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function permissionsUser()
+    {
+        return $this->hasOne(PermissionsUser::class);
+    }
 }

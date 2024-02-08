@@ -16,8 +16,11 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', function () {
-    return view('dashboard')->middleware('auth');
-});
+    return view('dashboard');
+})->middleware('auth');
+
+Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index')->middleware('auth');
+Route::post('/users', [App\Http\Controllers\UserController::class, 'storeUser'])->name('users.storeUser')->middleware('auth');
 
 Route::get('/newUser', function () {
     return view('admin.newuser');

@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('/newUser', function () {
     return view('admin.newuser');
-})->name('admin.newuser');
+})->name('admin.newUser');
 
 
 

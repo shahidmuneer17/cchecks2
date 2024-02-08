@@ -16,13 +16,11 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('dashboard')->middleware('auth');
 });
 
 Route::get('/newUser', function () {
     return view('admin.newuser');
-})->name('admin.newUser');
-
-
+})->name('admin.newUser')->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
